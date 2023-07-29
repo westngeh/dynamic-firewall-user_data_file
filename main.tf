@@ -51,6 +51,7 @@ resource "aws_instance" "db" {
     tags = {
         Name = "db server"
 }
+}
 
 resource "aws_instance" "ec2" {
     ami = "ami-06b09bfacae1453cb"
@@ -60,15 +61,14 @@ resource "aws_instance" "ec2" {
 
     tags = {
         Name = "web server"
-    }
+}
+}
      
-}
 
-}
 output "PrivateIP" {
     value = aws_instance.db.private_ip
 }
 
 output "PublicIP" {
-    value = aws_eip.web_ip.public_ip
+    value = aws_instance.ec2.public_ip
 }
